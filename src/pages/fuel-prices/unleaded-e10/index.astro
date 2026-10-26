@@ -1,0 +1,50 @@
+---
+import Layout from '@layouts/Layout.astro';
+import AdSlot from '@components/AdSlot.astro';
+import cities from '@data/uk_cities.json';
+
+const title = "UK Unleaded Petrol Prices Today (E10) — Compare Forecourts | PumpChecker";
+const description = "Find the cheapest regular unleaded petrol (E10, 95 Octane) near you. Compare forecourt totem rates across over 8,000 UK filling stations.";
+
+const topCities = cities.slice(0, 60);
+---
+
+<Layout title={title} description={description}>
+  <section class="relative pt-12 pb-16 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        UK National Unleaded Tracker
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        UK <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Unleaded Petrol Prices</span> (E10)
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Compare prices at the pump for standard unleaded E10 in over 3,000 UK towns and cities.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-xl font-bold text-white mb-6">Compare Unleaded E10 by City</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {topCities.map((c) => (
+        <a
+          href={`/petrol-stations/${c.slug}/unleaded-e10/`}
+          class="p-3.5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">
+            {c.name}
+          </div>
+          <div class="text-xs text-zinc-500 mt-0.5">
+            Cheapest E10 petrol
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <AdSlot className="my-10" />
+  </section>
+</Layout>

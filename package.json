@@ -1,0 +1,21 @@
+{
+  "name": "pumpchecker-co-uk",
+  "version": "1.0.0",
+  "description": "PumpChecker.co.uk — Live UK Petrol & Diesel Prices at the Pump. Find the cheapest fuel near you across 8,000+ UK forecourts with official CMA Open Fuel Data.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch-data": "node scripts/fetch-cma-fuel-data.js"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@tailwindcss/vite": "^4.0.9",
+    "astro": "^5.4.2",
+    "tailwindcss": "^4.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0"
+  }
+}

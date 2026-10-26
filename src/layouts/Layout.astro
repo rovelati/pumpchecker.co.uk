@@ -1,0 +1,212 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogType?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogType = 'website',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const siteUrl = 'https://pumpchecker.co.uk';
+const fullCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
+---
+
+<!doctype html>
+<html lang="en-GB" class="dark scroll-smooth selection:bg-sky-500 selection:text-black">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="google-adsense-account" content="ca-pub-2168172914069272" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={fullCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="PumpChecker.co.uk" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content={fullOgImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Mobile Theme -->
+    <meta name="theme-color" content="#09090b" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Leaflet CSS & JS for Interactive Map -->
+    <link rel="stylesheet" href="/leaflet/leaflet.css" />
+    <script is:inline src="/leaflet/leaflet.js"></script>
+
+    <!-- DNS prefetch for speed -->
+    <link rel="dns-prefetch" href="https://cmp.uniconsent.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+    <!-- Google Consent Mode v2 (default denial before CMP & Ads) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 500
+      });
+    </script>
+
+    <!-- UniConsent CMP (Consent Management Platform IAB TCF v2.2 & UK GDPR) -->
+    <script
+      is:inline
+      async
+      fetchpriority="low"
+      src="https://cmp.uniconsent.com/v2/cmp.js"
+      data-license="e538d9903a"
+    ></script>
+
+    <!-- Google AdSense (Auto Ads & Custom Units) -->
+    <script
+      is:inline
+      async
+      fetchpriority="low"
+      crossorigin="anonymous"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2168172914069272"
+    ></script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-zinc-950 shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 7h-1V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18h10V11h1a2 2 0 0 0 2-2V7zm-9 6H8v-2h2v2zm0-4H8V7h2v2zm6 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 4h-1V9h1v4zM5 19H3v-7a3 3 0 0 1 3-3v2a1 1 0 0 0-1 1v7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-black tracking-tight text-white">
+              Pump<span class="text-sky-400">Checker</span><span class="text-zinc-500 text-sm font-semibold">.co.uk</span>
+            </span>
+            <span class="text-[9px] text-zinc-400 font-semibold tracking-wider uppercase -mt-1">
+              Live UK Fuel Prices
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="/fuel-prices/unleaded-e10/" class="text-zinc-300 hover:text-sky-400 transition-colors">Unleaded E10</a>
+          <a href="/fuel-prices/diesel/" class="text-zinc-300 hover:text-sky-400 transition-colors">Diesel B7</a>
+          <a href="/fuel-prices/super-unleaded-e5/" class="text-zinc-300 hover:text-sky-400 transition-colors">Super E5</a>
+          <a href="/supermarket-fuel/" class="text-zinc-300 hover:text-sky-400 transition-colors">Supermarkets</a>
+          <a href="/cheapest-petrol-near-me/" class="px-3.5 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 font-semibold hover:bg-sky-500/20 transition-all">
+            Find Cheap Fuel
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/80 bg-zinc-950 mt-16 text-zinc-400">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <!-- Col 1: About -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-lg font-black text-white">Pump<span class="text-sky-400">Checker</span></span>
+            </div>
+            <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+              Real-time UK petrol and diesel price comparison. Covering over 8,000 forecourts across England, Scotland, Wales and Northern Ireland using official CMA Open Fuel Data.
+            </p>
+            <div class="text-[11px] text-zinc-500">
+              Data source: Competition and Markets Authority (CMA) Road Fuel Price Transparency Scheme.
+            </div>
+          </div>
+
+          <!-- Col 2: Fuel Types -->
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3 font-mono">Fuel Types</h3>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/fuel-prices/unleaded-e10/" class="hover:text-sky-400 transition-colors">Unleaded Petrol (E10)</a></li>
+              <li><a href="/fuel-prices/diesel/" class="hover:text-sky-400 transition-colors">Standard Diesel (B7)</a></li>
+              <li><a href="/fuel-prices/super-unleaded-e5/" class="hover:text-sky-400 transition-colors">Super Unleaded (E5)</a></li>
+              <li><a href="/cheapest-petrol-near-me/" class="hover:text-sky-400 transition-colors">Cheapest Petrol Near Me</a></li>
+              <li><a href="/supermarket-fuel/" class="hover:text-sky-400 transition-colors">Supermarket Forecourts</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Popular Brands -->
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3 font-mono">Supermarkets & Brands</h3>
+            <ul class="space-y-2 text-xs">
+              <li><a href="/brand/tesco/" class="hover:text-sky-400 transition-colors">Tesco Fuel Prices</a></li>
+              <li><a href="/brand/asda/" class="hover:text-sky-400 transition-colors">Asda Petrol Stations</a></li>
+              <li><a href="/brand/morrisons/" class="hover:text-sky-400 transition-colors">Morrisons Fuel Rates</a></li>
+              <li><a href="/brand/sainsburys/" class="hover:text-sky-400 transition-colors">Sainsbury's Petrol Stations</a></li>
+              <li><a href="/brand/costco/" class="hover:text-sky-400 transition-colors">Costco Wholesale Fuel</a></li>
+              <li><a href="/brand/bp/" class="hover:text-sky-400 transition-colors">BP Service Stations</a></li>
+              <li><a href="/brand/shell/" class="hover:text-sky-400 transition-colors">Shell Forecourts</a></li>
+              <li><a href="/brand/esso/" class="hover:text-sky-400 transition-colors">Esso Filling Stations</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Major Cities -->
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-3 font-mono">Top UK Cities</h3>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-1.5 text-xs">
+              <a href="/petrol-stations/london/" class="hover:text-sky-400 transition-colors">London</a>
+              <a href="/petrol-stations/birmingham/" class="hover:text-sky-400 transition-colors">Birmingham</a>
+              <a href="/petrol-stations/manchester/" class="hover:text-sky-400 transition-colors">Manchester</a>
+              <a href="/petrol-stations/glasgow/" class="hover:text-sky-400 transition-colors">Glasgow</a>
+              <a href="/petrol-stations/liverpool/" class="hover:text-sky-400 transition-colors">Liverpool</a>
+              <a href="/petrol-stations/leeds/" class="hover:text-sky-400 transition-colors">Leeds</a>
+              <a href="/petrol-stations/bristol/" class="hover:text-sky-400 transition-colors">Bristol</a>
+              <a href="/petrol-stations/edinburgh/" class="hover:text-sky-400 transition-colors">Edinburgh</a>
+              <a href="/petrol-stations/sheffield/" class="hover:text-sky-400 transition-colors">Sheffield</a>
+              <a href="/petrol-stations/cardiff/" class="hover:text-sky-400 transition-colors">Cardiff</a>
+              <a href="/petrol-stations/belfast/" class="hover:text-sky-400 transition-colors">Belfast</a>
+              <a href="/petrol-stations/nottingham/" class="hover:text-sky-400 transition-colors">Nottingham</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legal Bar -->
+        <div class="pt-8 border-t border-zinc-800 text-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© 2026 PumpChecker.co.uk. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="/privacy-policy/" class="hover:text-zinc-200 transition-colors">Privacy Policy</a>
+            <a href="/cookie-policy/" class="hover:text-zinc-200 transition-colors">Cookie Policy</a>
+            <a href="/terms/" class="hover:text-zinc-200 transition-colors">Terms of Use</a>
+            <a href="javascript:void(0)" onclick="window.__uniconsent && window.__uniconsent.openConsent ? window.__uniconsent.openConsent() : null" class="hover:text-sky-400 transition-colors">Cookie Preferences</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

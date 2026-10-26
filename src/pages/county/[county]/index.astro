@@ -1,0 +1,61 @@
+---
+import Layout from '@layouts/Layout.astro';
+import AdSlot from '@components/AdSlot.astro';
+import counties from '@data/uk_counties.json';
+import cities from '@data/uk_cities.json';
+
+export function getStaticPaths() {
+  return counties.map((county) => ({
+    params: { county: county.slug },
+    props: { county },
+  }));
+}
+
+const { county } = Astro.props;
+
+const countyCities = cities.filter(c => c.county && c.county.toLowerCase() === county.name.toLowerCase());
+const displayCities = countyCities.length > 0 ? countyCities : cities.slice(0, 36);
+
+const pageTitle = `Petrol Prices in ${county.name} — Live Forecourts & Cheap Fuel | PumpChecker`;
+const pageDesc = `Compare live petrol and diesel rates in ${county.name}. Discover the cheapest forecourts for Unleaded E10, Diesel B7 and Super E5 across ${county.name}.`;
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <section class="relative pt-12 pb-16 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        County Directory
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        Fuel Prices in <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">{county.name}</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Find the lowest prices at the pump across all towns and filling stations in {county.name}.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-xl font-bold text-white mb-6">Towns & Cities in {county.name}</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {displayCities.map((c) => (
+        <a
+          href={`/petrol-stations/${c.slug}/`}
+          class="p-3.5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">
+            {c.name}
+          </div>
+          <div class="text-xs text-zinc-500 mt-0.5">
+            {c.stationCount > 0 ? `${c.stationCount} forecourts` : 'Compare fuel'}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <AdSlot className="my-10" />
+  </section>
+</Layout>

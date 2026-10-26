@@ -1,0 +1,70 @@
+---
+import Layout from '@layouts/Layout.astro';
+import AdSlot from '@components/AdSlot.astro';
+import brands from '@data/uk_brands.json';
+import cities from '@data/uk_cities.json';
+
+const title = "UK Supermarket Fuel Prices Today — Tesco, Asda, Morrisons, Sainsbury's, Costco | PumpChecker";
+const description = "Compare live supermarket fuel prices across the UK. Discover which supermarket is cheapest today between Asda, Tesco, Morrisons, Sainsbury's, and Costco.";
+
+const supermarketBrands = brands.filter(b => b.type.toLowerCase().includes('supermarket') || b.slug === 'costco');
+const topCities = cities.slice(0, 48);
+---
+
+<Layout title={title} description={description}>
+  <section class="relative pt-12 pb-16 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        Big 5 UK Supermarkets Live Feed
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        UK <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Supermarket Fuel Prices</span> Today
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Supermarkets traditionally offer the cheapest petrol and diesel in the UK. Compare today's rates at Tesco, Asda, Morrisons, Sainsbury's and Costco.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {supermarketBrands.map((b) => (
+        <a
+          href={`/brand/${b.slug}/`}
+          class="p-6 bg-zinc-900 border border-zinc-800 hover:border-sky-500/50 rounded-2xl transition-all group block shadow-lg"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">{b.name}</h2>
+            <span class="text-xs font-mono text-zinc-500">{b.searchVolume}/mo</span>
+          </div>
+          <p class="text-xs text-zinc-400 leading-relaxed mb-4">{b.description}</p>
+          <span class="text-xs font-bold text-sky-400 group-hover:translate-x-1 transition-transform inline-block">
+            View {b.name} Forecourts & Prices →
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <AdSlot className="my-10" />
+
+    <h2 class="text-xl font-bold text-white mb-6">Compare Supermarket Petrol by City</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {topCities.map((c) => (
+        <a
+          href={`/petrol-stations/${c.slug}/`}
+          class="p-3.5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">
+            {c.name}
+          </div>
+          <div class="text-xs text-zinc-500 mt-0.5">
+            Supermarkets in {c.name}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

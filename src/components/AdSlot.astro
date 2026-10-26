@@ -1,0 +1,88 @@
+---
+interface Props {
+  slot?: string;
+  format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal';
+  minHeight?: number;
+  className?: string;
+}
+
+const {
+  slot,
+  format = 'auto',
+  minHeight = 100,
+  className = '',
+} = Astro.props;
+
+const adClient = 'ca-pub-2168172914069272';
+---
+
+<aside
+  class={`pc-ad-container my-8 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-center ${className}`}
+  aria-label="Advertisement"
+>
+  <div class="mb-2 text-[10px] font-semibold uppercase tracking-wider text-zinc-500 select-none">
+    <span>ADVERTISEMENT</span>
+  </div>
+  <div class="flex w-full items-center justify-center overflow-hidden" style={`min-height: ${minHeight}px;`}>
+    <ins
+      class="adsbygoogle"
+      style={`display:block; min-height: ${minHeight}px; width:100%;`}
+      data-ad-client={adClient}
+      {...(slot ? { 'data-ad-slot': slot } : {})}
+      data-ad-format={format}
+      data-full-width-responsive="true"
+    ></ins>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    if (typeof window === 'undefined') return;
+    if (window.__pcAdsInit) return;
+    window.__pcAdsInit = true;
+
+    function pushAd(ins) {
+      if (!ins || ins.getAttribute('data-pc-loaded') === '1') return;
+      ins.setAttribute('data-pc-loaded', '1');
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {}
+    }
+
+    function initAds() {
+      var slots = document.querySelectorAll('ins.adsbygoogle:not([data-pc-loaded])');
+      if (!slots.length) return;
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(
+          function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                obs.unobserve(entry.target);
+                pushAd(entry.target);
+              }
+            });
+          },
+          { rootMargin: '250px 0px' }
+        );
+        slots.forEach(function (slot) {
+          observer.observe(slot);
+        });
+      } else {
+        slots.forEach(pushAd);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAds);
+    } else {
+      initAds();
+    }
+  })();
+</script>
+
+<style>
+  .pc-ad-container:has(ins[data-ad-status="unfilled"]) {
+    display: none !important;
+  }
+</style>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pumpchecker.co.uk/sitemap-index.xml

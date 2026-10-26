@@ -1,0 +1,305 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSlot from './AdSlot.astro';
+
+interface Props {
+  city: {
+    name: string;
+    slug: string;
+    county?: string;
+    lat: number;
+    lng: number;
+    stationCount: number;
+  };
+  fuelType?: 'all' | 'e10' | 'diesel' | 'e5';
+}
+
+const { city, fuelType = 'all' } = Astro.props;
+
+const fuelLabels: Record<string, string> = {
+  all: 'Petrol & Diesel',
+  e10: 'Unleaded Petrol (E10)',
+  diesel: 'Diesel (B7)',
+  e5: 'Super Unleaded (E5)',
+};
+
+const currentFuelName = fuelLabels[fuelType] || 'Petrol & Diesel';
+
+const pageTitle = fuelType === 'all'
+  ? `Petrol Prices in ${city.name} Today — Cheapest Fuel Forecourts | PumpChecker`
+  : fuelType === 'diesel'
+  ? `Cheapest Diesel in ${city.name} Today (p/L) — Live Prices | PumpChecker`
+  : fuelType === 'e10'
+  ? `Cheapest Unleaded Petrol (E10) in ${city.name} Today | PumpChecker`
+  : `Super Unleaded (E5) Prices in ${city.name} Today | PumpChecker`;
+
+const pageDesc = `Compare live ${currentFuelName} prices in ${city.name}${city.county ? `, ${city.county}` : ''}. Find the cheapest fuel at Tesco, Asda, Morrisons, Sainsbury's, BP, Shell and independent forecourts with official CMA Open Fuel Data.`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": pageTitle,
+  "description": pageDesc,
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://pumpchecker.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": `Petrol Stations in ${city.name}`,
+        "item": `https://pumpchecker.co.uk/petrol-stations/${city.slug}/`
+      }
+    ]
+  }
+};
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <section class="relative pt-8 pb-10 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/60 to-zinc-950">
+    <div class="max-w-6xl mx-auto">
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs text-zinc-400 mb-6 font-mono" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-sky-400 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/petrol-stations/" class="hover:text-sky-400 transition-colors">Forecourts</a>
+        {city.county && (
+          <>
+            <span>/</span>
+            <span class="text-zinc-500">{city.county}</span>
+          </>
+        )}
+        <span>/</span>
+        <span class="text-white font-semibold">{city.name}</span>
+      </nav>
+
+      <!-- Headings -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-2">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            CMA Open Fuel Data Live
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            {currentFuelName} in <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">{city.name}</span>
+          </h1>
+          <p class="text-sm text-zinc-400 mt-1 max-w-2xl">
+            Live prices at the pump across all forecourts in and around {city.name}. Updated daily from official government feeds.
+          </p>
+        </div>
+
+        <!-- Fuel Filter Tabs -->
+        <div class="flex items-center gap-1.5 p-1 bg-zinc-900 border border-zinc-800 rounded-xl text-xs font-semibold self-start md:self-auto overflow-x-auto max-w-full">
+          <a
+            href={`/petrol-stations/${city.slug}/`}
+            class={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${fuelType === 'all' ? 'bg-sky-500 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
+          >
+            All
+          </a>
+          <a
+            href={`/petrol-stations/${city.slug}/unleaded-e10/`}
+            class={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${fuelType === 'e10' ? 'bg-sky-500 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
+          >
+            Unleaded E10
+          </a>
+          <a
+            href={`/petrol-stations/${city.slug}/diesel/`}
+            class={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${fuelType === 'diesel' ? 'bg-sky-500 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
+          >
+            Diesel B7
+          </a>
+          <a
+            href={`/petrol-stations/${city.slug}/super-unleaded-e5/`}
+            class={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${fuelType === 'e5' ? 'bg-sky-500 text-zinc-950 font-bold' : 'text-zinc-400 hover:text-white'}`}
+          >
+            Super E5
+          </a>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+      <div class="relative w-full h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-zinc-800 shadow-xl bg-zinc-900">
+        <div id="city-map" class="w-full h-full z-10"></div>
+        <div id="map-loading" class="absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/80 backdrop-blur-sm text-sm text-zinc-400">
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></span>
+            Loading live forecourt prices in {city.name}...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stations List Section -->
+  <section class="max-w-6xl mx-auto px-4 py-10">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span>Cheapest Forecourts in {city.name}</span>
+        <span id="city-stations-count" class="text-xs font-mono px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400">
+          Searching radius...
+        </span>
+      </h2>
+
+      <div class="text-xs text-zinc-400 hidden sm:block">
+        Sorted by lowest price at the pump
+      </div>
+    </div>
+
+    <!-- Stations Grid Container -->
+    <div id="city-stations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="col-span-full py-12 text-center text-zinc-500 font-mono">
+        Loading live pump data...
+      </div>
+    </div>
+
+    <!-- Ad Unit -->
+    <AdSlot className="my-8" />
+
+    <!-- SEO Information Block & FAQs -->
+    <div class="mt-12 pt-8 border-t border-zinc-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">How are fuel prices updated in {city.name}?</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Under the CMA Road Fuel Price Transparency Scheme, all major UK retailers (including Tesco, Asda, Morrisons, Sainsbury's, BP, Shell, and Esso) are legally required to report price changes at every forecourt within 30 minutes of updating their totem poles.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5">
+        <h3 class="text-base font-bold text-white mb-2">Are supermarket forecourts cheaper in {city.name}?</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Supermarket forecourts like Asda, Tesco, and Morrisons in {city.name} are typically 3p to 8p per litre cheaper than motorway services and oil-major company-owned sites. Clubcard and loyalty app discounts may offer additional savings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <!-- Client-side Map and Station Loader Script -->
+  <script is:inline define:vars={{ cityLat: city.lat, cityLng: city.lng, defaultFuel: fuelType === 'all' ? 'e10' : fuelType }}>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof L === 'undefined') return;
+
+      const mapEl = document.getElementById('city-map');
+      const loaderEl = document.getElementById('map-loading');
+      if (!mapEl) return;
+
+      const map = L.map('city-map', { scrollWheelZoom: false }).setView([cityLat, cityLng], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+
+      const markers = L.layerGroup().addTo(map);
+
+      try {
+        const res = await fetch('/cma_stations_index.json');
+        const allStations = await res.json();
+
+        // Haversine distance in km
+        function getDistanceKm(lat1, lon1, lat2, lon2) {
+          const R = 6371;
+          const dLat = (lat2 - lat1) * Math.PI / 180;
+          const dLon = (lon2 - lon1) * Math.PI / 180;
+          const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                    Math.sin(dLon/2) * Math.sin(dLon/2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          return R * c;
+        }
+
+        // Filter within 15 km of city center
+        const nearby = allStations
+          .map(s => {
+            const dist = getDistanceKm(cityLat, cityLng, s.lt, s.lg);
+            return { ...s, dist };
+          })
+          .filter(s => s.dist <= 18);
+
+        // Sort by fuel price
+        const fuelKey = defaultFuel === 'diesel' ? 'd' : defaultFuel === 'e5' ? 'e5' : 'e10';
+        const valid = nearby.filter(s => s[fuelKey] && s[fuelKey] > 80);
+        valid.sort((a, b) => a[fuelKey] - b[fuelKey]);
+
+        if (loaderEl) loaderEl.style.display = 'none';
+
+        const countEl = document.getElementById('city-stations-count');
+        if (countEl) countEl.innerText = `${valid.length} forecourts found`;
+
+        const grid = document.getElementById('city-stations-grid');
+        if (!grid) return;
+
+        if (valid.length === 0) {
+          grid.innerHTML = '<div class="col-span-full py-8 text-center text-zinc-500 font-mono">No forecourts with live prices found within 18 km. Check nearby towns.</div>';
+          return;
+        }
+
+        const cheapestPrice = valid[0][fuelKey];
+
+        grid.innerHTML = valid.map(s => {
+          const isCheapest = s[fuelKey] === cheapestPrice;
+          const pricePence = s[fuelKey].toFixed(1) + 'p';
+          const pricePounds = '£' + (s[fuelKey] / 100).toFixed(3);
+          const fuelName = defaultFuel === 'diesel' ? 'Diesel B7' : defaultFuel === 'e5' ? 'Super E5' : 'Unleaded E10';
+
+          return `
+            <div class="bg-zinc-900 border ${isCheapest ? 'border-sky-500 shadow-lg shadow-sky-500/10' : 'border-zinc-800'} rounded-2xl p-4 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-sky-400 font-mono">${s.b || 'Independent'}</span>
+                  ${isCheapest ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-sky-500 text-zinc-950 uppercase">CHEAPEST</span>' : ''}
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">${s.n}</h3>
+                <p class="text-xs text-zinc-400">${s.a ? s.a + ', ' : ''}${s.p || s.c}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-zinc-400 block">${fuelName}</span>
+                  <div class="flex items-baseline gap-1.5">
+                    <span class="text-2xl font-black ${isCheapest ? 'text-sky-400' : 'text-white'}">${pricePence}</span>
+                    <span class="text-xs text-zinc-500">${pricePounds}</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-semibold text-zinc-400 block">${s.dist ? s.dist.toFixed(1) + ' miles' : ''}</span>
+                  ${s.sm ? '<span class="text-[10px] text-emerald-400 font-semibold">Supermarket</span>' : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Map markers
+        valid.forEach(s => {
+          const isCheapest = s[fuelKey] === cheapestPrice;
+          const pricePence = s[fuelKey].toFixed(1) + 'p';
+          const markerIcon = L.divIcon({
+            className: isCheapest ? 'pb-marker-cheapest' : 'pb-marker-standard',
+            html: `<div style="padding: 4px 8px; border-radius: 9999px; font-size: 11px; white-space: nowrap;">${pricePence}</div>`,
+            iconSize: [64, 26],
+            iconAnchor: [32, 13]
+          });
+          const marker = L.marker([s.lt, s.lg], { icon: markerIcon });
+          marker.bindPopup(`
+            <div style="font-family: inherit;">
+              <strong style="color: #0284c7;">${s.b || s.n}</strong><br/>
+              <span style="font-size: 11px; color: #71717a;">${s.a || s.c} (${s.p})</span><br/>
+              <div style="margin-top: 6px; font-size: 14px; font-weight: bold; color: #ffffff;">${pricePence} (${defaultFuel.toUpperCase()})</div>
+            </div>
+          `);
+          markers.addLayer(marker);
+        });
+
+      } catch (e) {
+        console.error('Forecourts load error:', e);
+        if (loaderEl) loaderEl.innerHTML = '<span class="text-red-400">Failed to load forecourt feed. Please refresh.</span>';
+      }
+    });
+  </script>
+</Layout>

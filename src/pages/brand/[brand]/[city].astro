@@ -1,0 +1,23 @@
+---
+import BrandCityDetail from '@components/BrandCityDetail.astro';
+import brandCities from '@data/brand_cities.json';
+
+export function getStaticPaths() {
+  return brandCities.map((item) => ({
+    params: { brand: item.brandSlug, city: item.citySlug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<BrandCityDetail
+  brandName={item.brandName}
+  brandSlug={item.brandSlug}
+  cityName={item.cityName}
+  citySlug={item.citySlug}
+  county={item.county}
+  lat={item.lat}
+  lng={item.lng}
+/>

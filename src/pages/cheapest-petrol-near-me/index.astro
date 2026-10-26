@@ -1,0 +1,152 @@
+---
+import Layout from '@layouts/Layout.astro';
+import AdSlot from '@components/AdSlot.astro';
+import cities from '@data/uk_cities.json';
+
+const title = "Cheapest Petrol Prices Near Me Today — Live UK Forecourt Finder | PumpChecker";
+const description = "Find the cheapest petrol and diesel prices near you right now. Compare live forecourt rates within your local area using GPS or UK postcode.";
+
+const topCities = cities.slice(0, 60);
+---
+
+<Layout title={title} description={description}>
+  <section class="relative pt-12 pb-16 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        Live Postcode & GPS Finder
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+        Cheapest <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Petrol Prices Near Me</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Locate the lowest fuel prices within a 5 to 15-mile radius of your current location.
+      </p>
+
+      <div class="max-w-md mx-auto">
+        <button
+          id="locate-btn"
+          type="button"
+          class="w-full py-4 px-6 rounded-2xl bg-sky-500 hover:bg-sky-400 text-zinc-950 font-black text-base shadow-xl shadow-sky-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+          </svg>
+          Use GPS to Find Lowest Price
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Map & Results -->
+  <section id="results-section" class="max-w-6xl mx-auto px-4 py-8 hidden">
+    <div class="w-full h-[360px] rounded-2xl overflow-hidden border border-zinc-800 mb-8 bg-zinc-900">
+      <div id="near-map" class="w-full h-full"></div>
+    </div>
+    <div id="near-stations-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"></div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-xl font-bold text-white mb-6">Or Choose Your Town / City</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {topCities.map((c) => (
+        <a
+          href={`/petrol-stations/${c.slug}/`}
+          class="p-3.5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">
+            {c.name}
+          </div>
+          <div class="text-xs text-zinc-500 mt-0.5">
+            Forecourts near {c.name}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <AdSlot className="my-10" />
+  </section>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('locate-btn');
+      const resultsSection = document.getElementById('results-section');
+      const grid = document.getElementById('near-stations-grid');
+
+      function initGPS(lat, lng) {
+        if (typeof L === 'undefined') return;
+        resultsSection.classList.remove('hidden');
+
+        const map = L.map('near-map').setView([lat, lng], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+        fetch('/cma_stations_index.json')
+          .then(res => res.json())
+          .then(data => {
+            function getDist(lat1, lon1, lat2, lon2) {
+              const R = 6371;
+              const dLat = (lat2 - lat1) * Math.PI / 180;
+              const dLon = (lon2 - lon1) * Math.PI / 180;
+              const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon/2) * Math.sin(dLon/2);
+              return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            }
+
+            const nearby = data
+              .map(s => ({ ...s, dist: getDist(lat, lng, s.lt, s.lg) }))
+              .filter(s => s.dist < 15 && s.e10)
+              .sort((a, b) => a.e10 - b.e10)
+              .slice(0, 15);
+
+            if (nearby.length === 0) {
+              grid.innerHTML = '<div class="col-span-full text-center text-zinc-400">No forecourts found within 15 km of your coordinates.</div>';
+              return;
+            }
+
+            grid.innerHTML = nearby.map(s => `
+              <div class="p-4 bg-zinc-900 border border-zinc-800 rounded-xl">
+                <span class="text-xs font-bold text-sky-400 font-mono">${s.b}</span>
+                <h3 class="text-base font-bold text-white mb-1 mt-1">${s.n}</h3>
+                <p class="text-xs text-zinc-400 mb-3">${s.a} (${s.p})</p>
+                <div class="flex items-center justify-between border-t border-zinc-800 pt-2 text-xs">
+                  <span class="text-zinc-400">Unleaded E10:</span>
+                  <strong class="text-lg font-black text-sky-400 font-mono">${s.e10.toFixed(1)}p</strong>
+                </div>
+              </div>
+            `).join('');
+
+            nearby.forEach(s => {
+              L.marker([s.lt, s.lg]).addTo(map).bindPopup(`<strong>${s.b} - ${s.n}</strong><br/>${s.e10.toFixed(1)}p`);
+            });
+          });
+      }
+
+      // Check URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramLat = urlParams.get('lat');
+      const paramLng = urlParams.get('lng');
+      if (paramLat && paramLng) {
+        initGPS(parseFloat(paramLat), parseFloat(paramLng));
+      }
+
+      if (btn) {
+        btn.addEventListener('click', () => {
+          btn.innerText = 'Locating...';
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              btn.innerText = 'Location Found!';
+              initGPS(pos.coords.latitude, pos.coords.longitude);
+            },
+            (err) => {
+              alert('Could not retrieve your location. Please check browser permissions.');
+              btn.innerText = 'Use GPS to Find Lowest Price';
+            }
+          );
+        });
+      }
+    });
+  </script>
+</Layout>

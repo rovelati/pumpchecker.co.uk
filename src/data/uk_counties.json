@@ -1,0 +1,1090 @@
+[
+  {
+    "name": "Aberdeenshire",
+    "slug": "aberdeenshire"
+  },
+  {
+    "name": "Aberystwyth",
+    "slug": "aberystwyth"
+  },
+  {
+    "name": "Aldershot",
+    "slug": "aldershot"
+  },
+  {
+    "name": "Amble",
+    "slug": "amble"
+  },
+  {
+    "name": "Anglesey",
+    "slug": "anglesey"
+  },
+  {
+    "name": "Argyll & Bute",
+    "slug": "argyll-bute"
+  },
+  {
+    "name": "Avon",
+    "slug": "avon"
+  },
+  {
+    "name": "Ayrshire",
+    "slug": "ayrshire"
+  },
+  {
+    "name": "Banbury",
+    "slug": "banbury"
+  },
+  {
+    "name": "Bargoed",
+    "slug": "bargoed"
+  },
+  {
+    "name": "Barnard Castle",
+    "slug": "barnard-castle"
+  },
+  {
+    "name": "Barnsley",
+    "slug": "barnsley"
+  },
+  {
+    "name": "Bath And North East Somerset",
+    "slug": "bath-and-north-east-somerset"
+  },
+  {
+    "name": "Bedfordshire",
+    "slug": "bedfordshire"
+  },
+  {
+    "name": "Berkshire",
+    "slug": "berkshire"
+  },
+  {
+    "name": "Berwickshire",
+    "slug": "berwickshire"
+  },
+  {
+    "name": "Billingham",
+    "slug": "billingham"
+  },
+  {
+    "name": "Birmingham",
+    "slug": "birmingham"
+  },
+  {
+    "name": "Blackburn",
+    "slug": "blackburn"
+  },
+  {
+    "name": "Blackpool",
+    "slug": "blackpool"
+  },
+  {
+    "name": "Bolton",
+    "slug": "bolton"
+  },
+  {
+    "name": "Bradford",
+    "slug": "bradford"
+  },
+  {
+    "name": "Bridgend",
+    "slug": "bridgend"
+  },
+  {
+    "name": "Bridgend County Borough",
+    "slug": "bridgend-county-borough"
+  },
+  {
+    "name": "Brigend",
+    "slug": "brigend"
+  },
+  {
+    "name": "Bristol",
+    "slug": "bristol"
+  },
+  {
+    "name": "Buckinghamshire",
+    "slug": "buckinghamshire"
+  },
+  {
+    "name": "Burntwood",
+    "slug": "burntwood"
+  },
+  {
+    "name": "Burton Upon Trent",
+    "slug": "burton-upon-trent"
+  },
+  {
+    "name": "Bury St. Edmonds",
+    "slug": "bury-st-edmonds"
+  },
+  {
+    "name": "Caerphilly",
+    "slug": "caerphilly"
+  },
+  {
+    "name": "Camarthenshire",
+    "slug": "camarthenshire"
+  },
+  {
+    "name": "Cambridge",
+    "slug": "cambridge"
+  },
+  {
+    "name": "Cambridgeshire",
+    "slug": "cambridgeshire"
+  },
+  {
+    "name": "Canterbury",
+    "slug": "canterbury"
+  },
+  {
+    "name": "Cardiff",
+    "slug": "cardiff"
+  },
+  {
+    "name": "Carlisle",
+    "slug": "carlisle"
+  },
+  {
+    "name": "Carmarthen",
+    "slug": "carmarthen"
+  },
+  {
+    "name": "Carmarthenshire",
+    "slug": "carmarthenshire"
+  },
+  {
+    "name": "Castle Douglas",
+    "slug": "castle-douglas"
+  },
+  {
+    "name": "Ceredigion",
+    "slug": "ceredigion"
+  },
+  {
+    "name": "Cheltenham",
+    "slug": "cheltenham"
+  },
+  {
+    "name": "Cheshire",
+    "slug": "cheshire"
+  },
+  {
+    "name": "Chester",
+    "slug": "chester"
+  },
+  {
+    "name": "Chesterfield",
+    "slug": "chesterfield"
+  },
+  {
+    "name": "Choppington",
+    "slug": "choppington"
+  },
+  {
+    "name": "Clackmannanshire",
+    "slug": "clackmannanshire"
+  },
+  {
+    "name": "Clacton-On-Sea",
+    "slug": "clacton-on-sea"
+  },
+  {
+    "name": "Cleveland",
+    "slug": "cleveland"
+  },
+  {
+    "name": "Clwyd",
+    "slug": "clwyd"
+  },
+  {
+    "name": "Co Durham",
+    "slug": "co-durham"
+  },
+  {
+    "name": "Co. Antrim",
+    "slug": "co-antrim"
+  },
+  {
+    "name": "Conwy",
+    "slug": "conwy"
+  },
+  {
+    "name": "Corby",
+    "slug": "corby"
+  },
+  {
+    "name": "Cornwall",
+    "slug": "cornwall"
+  },
+  {
+    "name": "Country Durham",
+    "slug": "country-durham"
+  },
+  {
+    "name": "County Durham",
+    "slug": "county-durham"
+  },
+  {
+    "name": "Coventry",
+    "slug": "coventry"
+  },
+  {
+    "name": "Croydon",
+    "slug": "croydon"
+  },
+  {
+    "name": "Cumbria",
+    "slug": "cumbria"
+  },
+  {
+    "name": "Cumnock",
+    "slug": "cumnock"
+  },
+  {
+    "name": "Cwmbran",
+    "slug": "cwmbran"
+  },
+  {
+    "name": "Darlington",
+    "slug": "darlington"
+  },
+  {
+    "name": "Denbighshire",
+    "slug": "denbighshire"
+  },
+  {
+    "name": "Derbyshire",
+    "slug": "derbyshire"
+  },
+  {
+    "name": "Devon",
+    "slug": "devon"
+  },
+  {
+    "name": "Doncaster",
+    "slug": "doncaster"
+  },
+  {
+    "name": "Dorset",
+    "slug": "dorset"
+  },
+  {
+    "name": "Dudley",
+    "slug": "dudley"
+  },
+  {
+    "name": "Dumbartonshire",
+    "slug": "dumbartonshire"
+  },
+  {
+    "name": "Dumfries",
+    "slug": "dumfries"
+  },
+  {
+    "name": "Dumfries & Galloway",
+    "slug": "dumfries-galloway"
+  },
+  {
+    "name": "Dumfries And Galloway",
+    "slug": "dumfries-and-galloway"
+  },
+  {
+    "name": "Dumfrieshire",
+    "slug": "dumfrieshire"
+  },
+  {
+    "name": "Dundee",
+    "slug": "dundee"
+  },
+  {
+    "name": "Dyfed",
+    "slug": "dyfed"
+  },
+  {
+    "name": "Dyffryn Ardudwy",
+    "slug": "dyffryn-ardudwy"
+  },
+  {
+    "name": "East Devon",
+    "slug": "east-devon"
+  },
+  {
+    "name": "East London",
+    "slug": "east-london"
+  },
+  {
+    "name": "East Lothian",
+    "slug": "east-lothian"
+  },
+  {
+    "name": "East Riding Of Yorkshire",
+    "slug": "east-riding-of-yorkshire"
+  },
+  {
+    "name": "East Sussex",
+    "slug": "east-sussex"
+  },
+  {
+    "name": "East Yorkshire",
+    "slug": "east-yorkshire"
+  },
+  {
+    "name": "Edinburgh",
+    "slug": "edinburgh"
+  },
+  {
+    "name": "Essex",
+    "slug": "essex"
+  },
+  {
+    "name": "Exeter - Devon",
+    "slug": "exeter-devon"
+  },
+  {
+    "name": "Falkirk",
+    "slug": "falkirk"
+  },
+  {
+    "name": "Farnborough",
+    "slug": "farnborough"
+  },
+  {
+    "name": "Fife",
+    "slug": "fife"
+  },
+  {
+    "name": "Flintshire",
+    "slug": "flintshire"
+  },
+  {
+    "name": "Forest Of Dean",
+    "slug": "forest-of-dean"
+  },
+  {
+    "name": "Fort Augustus",
+    "slug": "fort-augustus"
+  },
+  {
+    "name": "Galasheils",
+    "slug": "galasheils"
+  },
+  {
+    "name": "Glamorgan",
+    "slug": "glamorgan"
+  },
+  {
+    "name": "Glasgow",
+    "slug": "glasgow"
+  },
+  {
+    "name": "Glouceshire",
+    "slug": "glouceshire"
+  },
+  {
+    "name": "Gloucester",
+    "slug": "gloucester"
+  },
+  {
+    "name": "Gloucestershire",
+    "slug": "gloucestershire"
+  },
+  {
+    "name": "Gloucestshire",
+    "slug": "gloucestshire"
+  },
+  {
+    "name": "Great Yarmouth",
+    "slug": "great-yarmouth"
+  },
+  {
+    "name": "Greater London",
+    "slug": "greater-london"
+  },
+  {
+    "name": "Greater Manchester",
+    "slug": "greater-manchester"
+  },
+  {
+    "name": "Grimsby",
+    "slug": "grimsby"
+  },
+  {
+    "name": "Gtr Manchester",
+    "slug": "gtr-manchester"
+  },
+  {
+    "name": "Gwent",
+    "slug": "gwent"
+  },
+  {
+    "name": "Gwynedd",
+    "slug": "gwynedd"
+  },
+  {
+    "name": "Halifax",
+    "slug": "halifax"
+  },
+  {
+    "name": "Hampshire",
+    "slug": "hampshire"
+  },
+  {
+    "name": "Harrogate",
+    "slug": "harrogate"
+  },
+  {
+    "name": "Harwich",
+    "slug": "harwich"
+  },
+  {
+    "name": "Herefordshire",
+    "slug": "herefordshire"
+  },
+  {
+    "name": "Hertfordshire",
+    "slug": "hertfordshire"
+  },
+  {
+    "name": "Hertforshire",
+    "slug": "hertforshire"
+  },
+  {
+    "name": "Hetfordshire",
+    "slug": "hetfordshire"
+  },
+  {
+    "name": "High Wycombe",
+    "slug": "high-wycombe"
+  },
+  {
+    "name": "Highland",
+    "slug": "highland"
+  },
+  {
+    "name": "Hillingdon",
+    "slug": "hillingdon"
+  },
+  {
+    "name": "Holyhead",
+    "slug": "holyhead"
+  },
+  {
+    "name": "Huddersfield",
+    "slug": "huddersfield"
+  },
+  {
+    "name": "Hull",
+    "slug": "hull"
+  },
+  {
+    "name": "Humberside",
+    "slug": "humberside"
+  },
+  {
+    "name": "Huntingdon",
+    "slug": "huntingdon"
+  },
+  {
+    "name": "Hyde",
+    "slug": "hyde"
+  },
+  {
+    "name": "Inverclyde",
+    "slug": "inverclyde"
+  },
+  {
+    "name": "Inverness",
+    "slug": "inverness"
+  },
+  {
+    "name": "Inverness-Shire",
+    "slug": "inverness-shire"
+  },
+  {
+    "name": "Irvine",
+    "slug": "irvine"
+  },
+  {
+    "name": "Isle Of Sheppey",
+    "slug": "isle-of-sheppey"
+  },
+  {
+    "name": "Isle Of Wight",
+    "slug": "isle-of-wight"
+  },
+  {
+    "name": "Kennford  Devon",
+    "slug": "kennford-devon"
+  },
+  {
+    "name": "Kent",
+    "slug": "kent"
+  },
+  {
+    "name": "Knowsley",
+    "slug": "knowsley"
+  },
+  {
+    "name": "Lanarkshire",
+    "slug": "lanarkshire"
+  },
+  {
+    "name": "Lancashire",
+    "slug": "lancashire"
+  },
+  {
+    "name": "Lancs",
+    "slug": "lancs"
+  },
+  {
+    "name": "Lauder",
+    "slug": "lauder"
+  },
+  {
+    "name": "Leamington Spa",
+    "slug": "leamington-spa"
+  },
+  {
+    "name": "Leeds",
+    "slug": "leeds"
+  },
+  {
+    "name": "Leicester",
+    "slug": "leicester"
+  },
+  {
+    "name": "Leicestershire",
+    "slug": "leicestershire"
+  },
+  {
+    "name": "Lichfield",
+    "slug": "lichfield"
+  },
+  {
+    "name": "Lincolnshire",
+    "slug": "lincolnshire"
+  },
+  {
+    "name": "Liskeard",
+    "slug": "liskeard"
+  },
+  {
+    "name": "Liverpool",
+    "slug": "liverpool"
+  },
+  {
+    "name": "Llanelli",
+    "slug": "llanelli"
+  },
+  {
+    "name": "London",
+    "slug": "london"
+  },
+  {
+    "name": "London, City Of",
+    "slug": "london-city-of"
+  },
+  {
+    "name": "Lothian",
+    "slug": "lothian"
+  },
+  {
+    "name": "Loughborough",
+    "slug": "loughborough"
+  },
+  {
+    "name": "Manchester",
+    "slug": "manchester"
+  },
+  {
+    "name": "Mansfield",
+    "slug": "mansfield"
+  },
+  {
+    "name": "Merseyside",
+    "slug": "merseyside"
+  },
+  {
+    "name": "Merthyr Tydfil",
+    "slug": "merthyr-tydfil"
+  },
+  {
+    "name": "Mid Glamorgan",
+    "slug": "mid-glamorgan"
+  },
+  {
+    "name": "Middlesborough",
+    "slug": "middlesborough"
+  },
+  {
+    "name": "Middlesex",
+    "slug": "middlesex"
+  },
+  {
+    "name": "Midlothian",
+    "slug": "midlothian"
+  },
+  {
+    "name": "Milton Keynes",
+    "slug": "milton-keynes"
+  },
+  {
+    "name": "Mold",
+    "slug": "mold"
+  },
+  {
+    "name": "Monmouthshire",
+    "slug": "monmouthshire"
+  },
+  {
+    "name": "Moray",
+    "slug": "moray"
+  },
+  {
+    "name": "Morayshire",
+    "slug": "morayshire"
+  },
+  {
+    "name": "Morpeth",
+    "slug": "morpeth"
+  },
+  {
+    "name": "Ne Lincolnshire",
+    "slug": "ne-lincolnshire"
+  },
+  {
+    "name": "Neath",
+    "slug": "neath"
+  },
+  {
+    "name": "Newark",
+    "slug": "newark"
+  },
+  {
+    "name": "Newcastle Upon Tyne",
+    "slug": "newcastle-upon-tyne"
+  },
+  {
+    "name": "Newport",
+    "slug": "newport"
+  },
+  {
+    "name": "Newton Aycliffe",
+    "slug": "newton-aycliffe"
+  },
+  {
+    "name": "Newton Stewart",
+    "slug": "newton-stewart"
+  },
+  {
+    "name": "Norfolk",
+    "slug": "norfolk"
+  },
+  {
+    "name": "North Ayrshire",
+    "slug": "north-ayrshire"
+  },
+  {
+    "name": "North Devon",
+    "slug": "north-devon"
+  },
+  {
+    "name": "North Humberside",
+    "slug": "north-humberside"
+  },
+  {
+    "name": "North Lanarkshire",
+    "slug": "north-lanarkshire"
+  },
+  {
+    "name": "North Somerset",
+    "slug": "north-somerset"
+  },
+  {
+    "name": "North Yorks",
+    "slug": "north-yorks"
+  },
+  {
+    "name": "North Yorkshire",
+    "slug": "north-yorkshire"
+  },
+  {
+    "name": "Northamptonshire",
+    "slug": "northamptonshire"
+  },
+  {
+    "name": "Northants",
+    "slug": "northants"
+  },
+  {
+    "name": "Northumberland",
+    "slug": "northumberland"
+  },
+  {
+    "name": "Norwich",
+    "slug": "norwich"
+  },
+  {
+    "name": "Nottingham",
+    "slug": "nottingham"
+  },
+  {
+    "name": "Nottinghamshire",
+    "slug": "nottinghamshire"
+  },
+  {
+    "name": "Nr Bridgend",
+    "slug": "nr-bridgend"
+  },
+  {
+    "name": "Oakham",
+    "slug": "oakham"
+  },
+  {
+    "name": "Oldham",
+    "slug": "oldham"
+  },
+  {
+    "name": "Oxfordshire",
+    "slug": "oxfordshire"
+  },
+  {
+    "name": "Paisley",
+    "slug": "paisley"
+  },
+  {
+    "name": "Pembrokeshire",
+    "slug": "pembrokeshire"
+  },
+  {
+    "name": "Perth & Kinross",
+    "slug": "perth-kinross"
+  },
+  {
+    "name": "Perth And Kinross",
+    "slug": "perth-and-kinross"
+  },
+  {
+    "name": "Perthshire",
+    "slug": "perthshire"
+  },
+  {
+    "name": "Peterborough",
+    "slug": "peterborough"
+  },
+  {
+    "name": "Plymouth",
+    "slug": "plymouth"
+  },
+  {
+    "name": "Port Talbot",
+    "slug": "port-talbot"
+  },
+  {
+    "name": "Powys",
+    "slug": "powys"
+  },
+  {
+    "name": "Preston",
+    "slug": "preston"
+  },
+  {
+    "name": "Radcliffe On Trent",
+    "slug": "radcliffe-on-trent"
+  },
+  {
+    "name": "Radstock",
+    "slug": "radstock"
+  },
+  {
+    "name": "Redditch",
+    "slug": "redditch"
+  },
+  {
+    "name": "Renfrewshire",
+    "slug": "renfrewshire"
+  },
+  {
+    "name": "Rhondda",
+    "slug": "rhondda"
+  },
+  {
+    "name": "Rhondda Cynon Taf",
+    "slug": "rhondda-cynon-taf"
+  },
+  {
+    "name": "Rhondda Cynon Taff",
+    "slug": "rhondda-cynon-taff"
+  },
+  {
+    "name": "Richmond",
+    "slug": "richmond"
+  },
+  {
+    "name": "Ross-Shire",
+    "slug": "ross-shire"
+  },
+  {
+    "name": "Rotherham",
+    "slug": "rotherham"
+  },
+  {
+    "name": "Roxburghshire",
+    "slug": "roxburghshire"
+  },
+  {
+    "name": "Ryton",
+    "slug": "ryton"
+  },
+  {
+    "name": "Salford",
+    "slug": "salford"
+  },
+  {
+    "name": "Scarborough",
+    "slug": "scarborough"
+  },
+  {
+    "name": "Scotland",
+    "slug": "scotland"
+  },
+  {
+    "name": "Scottish Borders",
+    "slug": "scottish-borders"
+  },
+  {
+    "name": "Seaham",
+    "slug": "seaham"
+  },
+  {
+    "name": "Sheffield",
+    "slug": "sheffield"
+  },
+  {
+    "name": "Shrewsbury",
+    "slug": "shrewsbury"
+  },
+  {
+    "name": "Shropshire",
+    "slug": "shropshire"
+  },
+  {
+    "name": "Solihull",
+    "slug": "solihull"
+  },
+  {
+    "name": "Somerset",
+    "slug": "somerset"
+  },
+  {
+    "name": "Somerton - Some",
+    "slug": "somerton-some"
+  },
+  {
+    "name": "South Glamorgan",
+    "slug": "south-glamorgan"
+  },
+  {
+    "name": "South Gloucestershire",
+    "slug": "south-gloucestershire"
+  },
+  {
+    "name": "South Hams",
+    "slug": "south-hams"
+  },
+  {
+    "name": "South Lanarkshire",
+    "slug": "south-lanarkshire"
+  },
+  {
+    "name": "South London",
+    "slug": "south-london"
+  },
+  {
+    "name": "South Yorkshire",
+    "slug": "south-yorkshire"
+  },
+  {
+    "name": "Southampton",
+    "slug": "southampton"
+  },
+  {
+    "name": "Spalding",
+    "slug": "spalding"
+  },
+  {
+    "name": "Staffordshire",
+    "slug": "staffordshire"
+  },
+  {
+    "name": "Staines",
+    "slug": "staines"
+  },
+  {
+    "name": "Stannington Morpeth",
+    "slug": "stannington-morpeth"
+  },
+  {
+    "name": "Stirling",
+    "slug": "stirling"
+  },
+  {
+    "name": "Stirlingshire",
+    "slug": "stirlingshire"
+  },
+  {
+    "name": "Stockport",
+    "slug": "stockport"
+  },
+  {
+    "name": "Stockton-On-Tees",
+    "slug": "stockton-on-tees"
+  },
+  {
+    "name": "Stoke-On-Trent",
+    "slug": "stoke-on-trent"
+  },
+  {
+    "name": "Suffolk",
+    "slug": "suffolk"
+  },
+  {
+    "name": "Sunderland",
+    "slug": "sunderland"
+  },
+  {
+    "name": "Surrey",
+    "slug": "surrey"
+  },
+  {
+    "name": "Sussex",
+    "slug": "sussex"
+  },
+  {
+    "name": "Swansea",
+    "slug": "swansea"
+  },
+  {
+    "name": "Swindon",
+    "slug": "swindon"
+  },
+  {
+    "name": "Telford",
+    "slug": "telford"
+  },
+  {
+    "name": "Tingewick",
+    "slug": "tingewick"
+  },
+  {
+    "name": "Tranent",
+    "slug": "tranent"
+  },
+  {
+    "name": "Tyne & Wear",
+    "slug": "tyne-wear"
+  },
+  {
+    "name": "Tyne And Wear",
+    "slug": "tyne-and-wear"
+  },
+  {
+    "name": "Uxbridge",
+    "slug": "uxbridge"
+  },
+  {
+    "name": "Walsall",
+    "slug": "walsall"
+  },
+  {
+    "name": "Warrington",
+    "slug": "warrington"
+  },
+  {
+    "name": "Warwickshire",
+    "slug": "warwickshire"
+  },
+  {
+    "name": "Wells",
+    "slug": "wells"
+  },
+  {
+    "name": "West Glamorgan",
+    "slug": "west-glamorgan"
+  },
+  {
+    "name": "West Lothian",
+    "slug": "west-lothian"
+  },
+  {
+    "name": "West Midlands",
+    "slug": "west-midlands"
+  },
+  {
+    "name": "West Sussex",
+    "slug": "west-sussex"
+  },
+  {
+    "name": "West Yorks",
+    "slug": "west-yorks"
+  },
+  {
+    "name": "West Yorkshire",
+    "slug": "west-yorkshire"
+  },
+  {
+    "name": "West Yourksire",
+    "slug": "west-yourksire"
+  },
+  {
+    "name": "Weston-Super-Mare",
+    "slug": "weston-super-mare"
+  },
+  {
+    "name": "Widnes",
+    "slug": "widnes"
+  },
+  {
+    "name": "Wigan",
+    "slug": "wigan"
+  },
+  {
+    "name": "Wiltshire",
+    "slug": "wiltshire"
+  },
+  {
+    "name": "Wirral",
+    "slug": "wirral"
+  },
+  {
+    "name": "Wirrel",
+    "slug": "wirrel"
+  },
+  {
+    "name": "Wolverhampton",
+    "slug": "wolverhampton"
+  },
+  {
+    "name": "Worcester",
+    "slug": "worcester"
+  },
+  {
+    "name": "Worcestershire",
+    "slug": "worcestershire"
+  },
+  {
+    "name": "Wrexham",
+    "slug": "wrexham"
+  },
+  {
+    "name": "York",
+    "slug": "york"
+  },
+  {
+    "name": "Yorkshire",
+    "slug": "yorkshire"
+  }
+]

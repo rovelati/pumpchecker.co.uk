@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Cookie Policy — PumpChecker.co.uk";
+const description = "Cookie Policy for PumpChecker.co.uk detailing cookie categories, consent choices and third-party advertising partners.";
+---
+
+<Layout title={title} description={description}>
+  <section class="max-w-4xl mx-auto px-4 py-16 text-zinc-300 leading-relaxed text-sm">
+    <h1 class="text-3xl font-black text-white mb-6">Cookie Policy</h1>
+    <p class="text-xs text-zinc-500 mb-8">In compliance with UK PECR and UK GDPR</p>
+
+    <div class="space-y-6">
+      <section>
+        <h2 class="text-lg font-bold text-white mb-2">1. What Are Cookies?</h2>
+        <p>
+          Cookies are small text files stored on your device that enable websites to remember user preferences, deliver relevant advertising and analyze traffic.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-2">2. How We Use Cookies</h2>
+        <p>
+          We use strictly necessary technical cookies (for theme preference and consent state) and optional advertising cookies (Google AdSense) which require your affirmative consent via our Consent Management Platform (UniConsent CMP).
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-2">3. Managing Your Preferences</h2>
+        <p>
+          You can change or withdraw your cookie consent at any time by clicking the <a href="javascript:void(0)" onclick="window.__uniconsent && window.__uniconsent.openConsent ? window.__uniconsent.openConsent() : null" class="text-sky-400 underline font-semibold">Cookie Preferences</a> link available in the footer of every page.
+        </p>
+      </section>
+    </div>
+  </section>
+</Layout>

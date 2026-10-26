@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import cities from '@data/uk_cities.json';
+import brands from '@data/uk_brands.json';
+
+const title = "PumpChecker.co.uk — Live UK Petrol & Diesel Prices at the Pump";
+const description = "Compare live petrol and diesel prices at over 8,000 UK forecourts. Find the cheapest fuel today at Tesco, Asda, Morrisons, Sainsbury's, BP, Shell and independent stations using official CMA Open Fuel Data.";
+
+const topCities = cities.slice(0, 48);
+
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const citiesByLetter: Record<string, typeof cities> = {};
+alphabet.forEach(letter => {
+  citiesByLetter[letter] = cities.filter(c => c.name.toUpperCase().startsWith(letter)).slice(0, 30);
+});
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 px-4 border-b border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-950">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        Official CMA UK Open Fuel Data Scheme
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white mb-4">
+        Live Petrol Prices: <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Cheapest at the Pump</span> Across the UK
+      </h1>
+
+      <p class="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
+        Compare real-time forecourt rates for <strong>Unleaded E10</strong>, <strong>Super Unleaded E5</strong>, and <strong>Diesel B7</strong> in over 3,000 UK towns and cities.
+      </p>
+
+      <!-- Direct Search Form -->
+      <div id="search" class="max-w-xl mx-auto bg-zinc-900 border border-zinc-700/80 p-3 sm:p-4 rounded-2xl shadow-2xl shadow-black/80">
+        <form id="search-form" class="flex flex-col sm:flex-row gap-2.5">
+          <div class="relative flex-grow">
+            <input
+              type="text"
+              id="search-input"
+              list="cities-datalist"
+              placeholder="Enter town, city or postcode (e.g. Birmingham, Leeds, Bristol)..."
+              class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-sky-500 transition-colors"
+              autocomplete="off"
+              required
+            />
+            <datalist id="cities-datalist">
+              {cities.slice(0, 500).map(c => (
+                <option value={c.name} data-slug={c.slug}>{c.name}</option>
+              ))}
+            </datalist>
+          </div>
+          <button
+            type="submit"
+            class="px-6 py-3.5 bg-sky-500 hover:bg-sky-400 text-zinc-950 font-bold rounded-xl text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-sky-500/20"
+          >
+            <svg class="w-4 h-4 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Find Prices
+          </button>
+        </form>
+
+        <div class="mt-3 flex items-center justify-between text-xs text-zinc-400 pt-2 border-t border-zinc-800">
+          <button
+            type="button"
+            id="geolocate-btn"
+            class="inline-flex items-center gap-1.5 text-sky-400 hover:text-sky-300 font-semibold cursor-pointer transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            Use My Location (GPS)
+          </button>
+          <span class="text-zinc-500 font-mono">8,140+ Forecourts Indexed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Volume Pillar Pages Bar -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a
+        href="/fuel-prices/diesel/"
+        class="p-5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/60 rounded-2xl transition-all group block shadow-lg"
+      >
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider font-mono">FUEL TYPE</span>
+          <span class="text-zinc-500 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">→</span>
+        </div>
+        <h2 class="text-lg font-bold text-white mb-1">Diesel Prices Today</h2>
+        <p class="text-xs text-zinc-400">Find the lowest standard diesel B7 prices across the UK.</p>
+      </a>
+
+      <a
+        href="/fuel-prices/unleaded-e10/"
+        class="p-5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/60 rounded-2xl transition-all group block shadow-lg"
+      >
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider font-mono">FUEL TYPE</span>
+          <span class="text-zinc-500 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">→</span>
+        </div>
+        <h2 class="text-lg font-bold text-white mb-1">Unleaded E10 Prices</h2>
+        <p class="text-xs text-zinc-400">Compare regular 95 octane petrol rates in your local area.</p>
+      </a>
+
+      <a
+        href="/supermarket-fuel/"
+        class="p-5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/60 rounded-2xl transition-all group block shadow-lg"
+      >
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider font-mono">SUPERMARKETS</span>
+          <span class="text-zinc-500 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">→</span>
+        </div>
+        <h2 class="text-lg font-bold text-white mb-1">Supermarket Forecourts</h2>
+        <p class="text-xs text-zinc-400">Tesco, Asda, Morrisons, Sainsbury's and Costco rates compared.</p>
+      </a>
+
+      <a
+        href="/cheapest-petrol-near-me/"
+        class="p-5 bg-zinc-900 border border-zinc-800 hover:border-sky-500/60 rounded-2xl transition-all group block shadow-lg"
+      >
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider font-mono">NEAR ME</span>
+          <span class="text-zinc-500 group-hover:text-sky-400 group-hover:translate-x-0.5 transition-all">→</span>
+        </div>
+        <h2 class="text-lg font-bold text-white mb-1">Cheapest Petrol Near Me</h2>
+        <p class="text-xs text-zinc-400">Instant radius comparison based on your live postcode or GPS.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Supermarket Brands Bar -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-white">Compare by Supermarket & Brand</h2>
+      <span class="text-xs text-zinc-500 font-mono">Low-cost forecourts</span>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {brands.map((b) => (
+        <a
+          href={`/brand/${b.slug}/`}
+          class="p-4 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-base font-bold text-white group-hover:text-sky-400 transition-colors">{b.name}</span>
+            <span class="text-[10px] text-zinc-500 font-mono">{b.searchVolume}</span>
+          </div>
+          <p class="text-xs text-zinc-400 line-clamp-1">{b.tagline}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Top Cities Grid -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-white">Petrol & Diesel Prices in Major UK Cities</h2>
+      <span class="text-xs text-zinc-500 font-mono">3,000 towns covered</span>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
+      {topCities.map((c) => (
+        <a
+          href={`/petrol-stations/${c.slug}/`}
+          class="p-3 bg-zinc-900 border border-zinc-800 hover:border-sky-500/40 rounded-xl transition-all group block"
+        >
+          <div class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors truncate">
+            {c.name}
+          </div>
+          <div class="text-[11px] text-zinc-500 truncate">
+            {c.county || 'UK forecourts'}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Ad Banner -->
+  <section class="max-w-6xl mx-auto px-4">
+    <AdSlot />
+  </section>
+
+  <!-- Complete Crawlable A-Z Directory for Search Engines -->
+  <section class="max-w-6xl mx-auto px-4 py-12 border-t border-zinc-800">
+    <h2 class="text-xl font-bold text-white mb-2">Complete UK Fuel Directory (A-Z)</h2>
+    <p class="text-sm text-zinc-400 mb-8">
+      Browse all indexed settlements, towns, boroughs and cities with live CMA fuel data.
+    </p>
+
+    <div class="space-y-8">
+      {alphabet.map((letter) => {
+        const letterCities = citiesByLetter[letter];
+        if (!letterCities || letterCities.length === 0) return null;
+        return (
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 font-black flex items-center justify-center font-mono">
+                {letter}
+              </span>
+              <div class="h-px flex-grow bg-zinc-800"></div>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-xs">
+              {letterCities.map((c) => (
+                <a
+                  href={`/petrol-stations/${c.slug}/`}
+                  class="text-zinc-400 hover:text-sky-400 transition-colors py-1 truncate"
+                >
+                  {c.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Client-side Search and Geolocation Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('search-form');
+      const input = document.getElementById('search-input');
+      const datalist = document.getElementById('cities-datalist');
+      const geoBtn = document.getElementById('geolocate-btn');
+
+      function slugify(text) {
+        return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      }
+
+      if (form && input) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const query = input.value.trim();
+          if (!query) return;
+
+          let targetSlug = null;
+          if (datalist) {
+            const options = datalist.querySelectorAll('option');
+            for (const opt of options) {
+              if (opt.value.toLowerCase() === query.toLowerCase()) {
+                targetSlug = opt.getAttribute('data-slug') || slugify(opt.value);
+                break;
+              }
+            }
+          }
+
+          if (!targetSlug) {
+            targetSlug = slugify(query);
+          }
+
+          window.location.href = `/petrol-stations/${targetSlug}/`;
+        });
+      }
+
+      if (geoBtn) {
+        geoBtn.addEventListener('click', () => {
+          if (!navigator.geolocation) {
+            alert('Geolocation is not supported by your browser.');
+            return;
+          }
+          geoBtn.innerText = 'Locating...';
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              window.location.href = `/cheapest-petrol-near-me/?lat=${pos.coords.latitude.toFixed(4)}&lng=${pos.coords.longitude.toFixed(4)}`;
+            },
+            (err) => {
+              alert('Could not determine your location. Please enter a town name.');
+              geoBtn.innerHTML = `
+                <svg class="w-3.5 h-3.5 inline mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+                Use My Location (GPS)
+              `;
+            }
+          );
+        });
+      }
+    });
+  </script>
+</Layout>

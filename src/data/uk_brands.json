@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Tesco",
+    "slug": "tesco",
+    "type": "Supermarket",
+    "tagline": "Tesco Fuel Prices & Forecourts",
+    "description": "Find the cheapest Tesco petrol filling stations across the UK. Compare live Clubcard petrol and diesel prices at Tesco superstores and extra forecourts.",
+    "searchVolume": "8.1K",
+    "kd": 19
+  },
+  {
+    "name": "Asda",
+    "slug": "asda",
+    "type": "Supermarket",
+    "tagline": "Asda Fuel Cost & Petrol Stations",
+    "description": "Compare current Asda fuel prices for Unleaded E10 and Diesel B7 across the UK. Find your nearest low-cost Asda supermarket forecourt.",
+    "searchVolume": "8.1K",
+    "kd": 16
+  },
+  {
+    "name": "Morrisons",
+    "slug": "morrisons",
+    "type": "Supermarket",
+    "tagline": "Morrisons Petrol Prices Today",
+    "description": "Current petrol and diesel prices at Morrisons filling stations. Compare live forecourt rates near you.",
+    "searchVolume": "22.2K",
+    "kd": 25
+  },
+  {
+    "name": "Sainsbury's",
+    "slug": "sainsburys",
+    "type": "Supermarket",
+    "tagline": "Sainsbury's Petrol Station Prices",
+    "description": "Compare live fuel prices at Sainsbury's forecourts. Find cheap Unleaded and Diesel at your local supermarket filling station.",
+    "searchVolume": "6.6K",
+    "kd": 21
+  },
+  {
+    "name": "Costco",
+    "slug": "costco",
+    "type": "Wholesale / Supermarket",
+    "tagline": "Costco Fuel Price UK",
+    "description": "Lowest wholesale fuel rates at Costco UK forecourts. Check live Kirkland Signature petrol and diesel prices for members.",
+    "searchVolume": "22.2K",
+    "kd": 23
+  },
+  {
+    "name": "BP",
+    "slug": "bp",
+    "type": "Major Retailer",
+    "tagline": "BP Garage Near Me & Fuel Prices",
+    "description": "Compare fuel prices at BP service stations across the UK. Check live prices for BP Ultimate Unleaded, Regular E10, and Diesel.",
+    "searchVolume": "6.6K",
+    "kd": 19
+  },
+  {
+    "name": "Shell",
+    "slug": "shell",
+    "type": "Major Retailer",
+    "tagline": "Shell Petrol Station Prices",
+    "description": "Find Shell petrol stations near you with live prices for Shell V-Power, FuelSave Unleaded, and Diesel.",
+    "searchVolume": "18.1K",
+    "kd": 35
+  },
+  {
+    "name": "Esso",
+    "slug": "esso",
+    "type": "Major Retailer",
+    "tagline": "Esso Petrol Stations & Fuel Cost",
+    "description": "Check current prices at Esso service stations across England, Scotland, and Wales. Real-time Unleaded and Synergy Diesel rates.",
+    "searchVolume": "22.2K",
+    "kd": 62
+  }
+]
