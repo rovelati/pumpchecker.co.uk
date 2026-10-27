@@ -210,7 +210,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.
             <span class="text-[11px] text-zinc-500">Official Government Open Data Sources</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
             <!-- United Kingdom (This site) -->
             <div class="p-3.5 rounded-xl border border-sky-500/40 bg-sky-950/20 relative">
               <div class="flex items-center justify-between mb-1.5">
@@ -304,6 +304,26 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.
               </div>
               <p class="text-[11px] text-zinc-400 leading-snug">
                 Free UK MOT test history, mileage rollback check and DVLA road tax status.
+              </p>
+            </a>
+
+            <!-- HousePricesPro (UK Sold House Prices & Property Register) -->
+            <a
+              href="https://housepricespro.co.uk/"
+              hreflang="en-GB"
+              target="_blank"
+              rel="noopener"
+              class="p-3.5 rounded-xl border border-blue-500/40 bg-blue-950/20 hover:border-blue-400 hover:bg-blue-900/30 transition-all group"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-sm font-bold text-white group-hover:text-blue-400 transition-colors flex items-center gap-1.5">
+                  <span>🇬🇧</span>
+                  <span>HousePricesPro.co.uk</span>
+                </span>
+                <span class="text-[9px] font-semibold text-blue-400">Property &rarr;</span>
+              </div>
+              <p class="text-[11px] text-zinc-400 leading-snug">
+                Official HM Land Registry sold house prices, local trends & property register.
               </p>
             </a>
           </div>
